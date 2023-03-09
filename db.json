@@ -1,0 +1,22 @@
+{
+  "auth": [
+    {
+      "id": "abc",
+      "userId": "user1",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "bcd",
+      "userId": "admin1",
+      "password": "234",
+      "role": "admin"
+    },
+    {
+      "id": "def",
+      "userId": "provider1",
+      "password": "345",
+      "role": "provider"
+    }
+  ]
+}

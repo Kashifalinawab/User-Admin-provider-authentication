@@ -1,0 +1,21 @@
+#lginbtn {
+  margin-top: 10px;
+  border: burlywood 1px solid;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  background-color: rgb(254, 221, 179);
+}
+
+#main-div {
+  /* display: block; */
+  border: 0.2rem #ffff dashed;
+  background-color: #e5dbff;
+  text-align: center;
+  margin: 10rem 20rem 10rem 20rem;
+  padding: 2rem;
+}
