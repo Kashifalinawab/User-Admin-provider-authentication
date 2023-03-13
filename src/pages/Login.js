@@ -6,9 +6,10 @@ const Login = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  // console.log(role);
   const [data, setData] = useState([]);
-  // console.log(data);
+  const [isUserChecked, setIsUserChecked] = useState(false);
+  const [isAdminChecked, setIsAdminChecked] = useState(false);
+  const [isProviderChecked, setIsProviderChecked] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/auth")
@@ -20,9 +21,12 @@ const Login = () => {
 
   const submitHandle = (e) => {
     e.preventDefault();
-
     setUserId("");
     setPassword("");
+    setIsUserChecked(false);
+    setIsAdminChecked(false);
+    setIsProviderChecked(false);
+
     const a = data.find(
       (info) =>
         info.userId === userId &&
@@ -42,36 +46,50 @@ const Login = () => {
       <h1>Please login</h1> <br />
       <br />
       <form onSubmit={submitHandle}>
-        <input
-          type="radio"
-          name="radio1"
-          onChange={(e) => {
-            setRole(e.target.value);
-          }}
-          value="user"
-          required
-        />
-        <label htmlFor="user">User</label>
-        <input
-          type="radio"
-          name="radio1"
-          onChange={(e) => {
-            setRole(e.target.value);
-          }}
-          value="admin"
-          required
-        />
-        <label htmlFor="admin">Admin</label>
-        <input
-          type="radio"
-          name="radio1"
-          onChange={(e) => {
-            setRole(e.target.value);
-          }}
-          value="provider"
-          required
-        />
-        <label htmlFor="provider">Provider</label> <br />
+        <div>
+          <input
+            type="radio"
+            name="radio1"
+            onChange={(e) => {
+              setRole(e.target.value);
+              setIsUserChecked(true);
+              setIsAdminChecked(false);
+              setIsProviderChecked(false);
+            }}
+            value="user"
+            checked={isUserChecked}
+            required
+          />
+          <label htmlFor="user">User</label>
+          <input
+            type="radio"
+            name="radio1"
+            value="admin"
+            onChange={(e) => {
+              setRole(e.target.value);
+              setIsUserChecked(false);
+              setIsAdminChecked(true);
+              setIsProviderChecked(false);
+            }}
+            checked={isAdminChecked}
+            required
+          />
+          <label htmlFor="admin">Admin</label>
+          <input
+            type="radio"
+            name="radio1"
+            value="provider"
+            onChange={(e) => {
+              setRole(e.target.value);
+              setIsUserChecked(false);
+              setIsAdminChecked(false);
+              setIsProviderChecked(true);
+            }}
+            checked={isProviderChecked}
+            required
+          />
+          <label htmlFor="provider">Provider</label> <br />
+        </div>
         <input
           type="text"
           placeholder="UserId"
@@ -92,7 +110,9 @@ const Login = () => {
         <br />
         <button id="lginbtn" type="submit">
           Login
-        </button>
+        </button>{" "}
+        <span></span>
+        <button>Register </button>
       </form>
     </div>
   );
